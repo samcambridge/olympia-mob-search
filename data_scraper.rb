@@ -19,7 +19,7 @@ mob_pages = page.all('.postcontent a').map { |a| a['href'] }
 # init data hash
 data = {}
 
-forget_about = ["weapons", "armours", "rares", "semi-"]
+forget_about = ['weapons', 'armours', 'rares', 'semi-']
 
 # loop pages
 mob_pages.each do |mob_page|
@@ -33,9 +33,9 @@ mob_pages.each do |mob_page|
   cleaned_drops = []
 
   all_text.each do |td|
-    html = page.execute_script("return arguments[0].innerHTML;", td)
+    html = page.execute_script('return arguments[0].innerHTML;', td)
 
-    if (html.include?("div"))
+    if (html.include?('div'))
       drops = html.gsub(/<div.*?>|<\/div>/, '').split('<br>')
     else
       drops = html.split('<br>')
@@ -44,18 +44,20 @@ mob_pages.each do |mob_page|
     drops.each do |drop|
       drop = drop.downcase
       forget_about.each do |phrase|
-        drop.gsub!(/#{phrase}/,'')
+        drop.gsub!(/#{phrase}/, '')
       end
 
-      unless drop == ""
-        cleaned_drops << drop
+      unless drop == ''
+        if data.key?(drop.to_sym)
+          data[drop.to_sym] << npc
+        else
+          data[drop.to_sym] = [npc]
+        end
       end
     end
-
   end
-
-    data[npc.to_sym] = cleaned_drops
-    puts cleaned_drops
 end
 
-raise data.inspect
+open('./Src/data.json', 'w') do |f|
+  f.puts data.to_json
+end

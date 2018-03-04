@@ -1,9 +1,16 @@
+body {
+  font-size: 12px;
+}
+
+* {
+  outline: none;
+  text-transform: capitalize;
+}
+
 .App {
-  text-align: center;
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
   height: 80px;
 }
 
@@ -12,17 +19,31 @@
   height: 150px;
   padding: 20px;
   color: white;
+  text-align: center;
+  font-size: 3rem;
+  line-height: 9rem;
 }
 
-.App-title {
-  font-size: 1.5em;
+.App-search,
+.App-data {
+  width: 100%;
+  max-width: 1000px;
+  margin: 4rem auto;
+  border: 1px solid #ddd;
+  padding: 2rem;
 }
 
-.App-intro {
-  font-size: large;
+input {
+  width: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
+  font-size: 1rem;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.Item {
+  border-bottom: 1px solid #ccc;
+}
+
+p {
+  font-size: 1rem;
 }
