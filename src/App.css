@@ -47,3 +47,19 @@ input {
 p {
   font-size: 1rem;
 }
+
+/* mobile */ @media only screen
+and (min-device-width : 320px) and (max-device-width : 667px) {
+
+  .App-search,
+  .App-data {
+    max-width: 250px;
+  }
+
+  .App-header {
+    height: 100px;
+    font-size: 2rem;
+    line-height: 2.8rem;
+  }
+
+}
