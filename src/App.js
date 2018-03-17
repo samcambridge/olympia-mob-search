@@ -1,10 +1,32 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Link, Route } from "react-router-dom";
+
 import "./App.css";
 import npcData from "./data.json";
 
 import _ from "lodash";
 
 class App extends Component {
+  render() {
+    return (
+      <Router>
+        <div className="App">
+          <header className="App-header">
+            Helbreath Olympia NPC Drop Search
+          </header>
+
+          <Route exact={true} path="/" component={ItemSearch} />
+          <Route
+            path="/m/:npc"
+            render={({ match }) => <NpcView npc={match.params.npc} />}
+          />
+        </div>
+      </Router>
+    );
+  }
+}
+
+class ItemSearch extends Component {
   constructor(props) {
     super(props);
 
@@ -17,7 +39,8 @@ class App extends Component {
 
   handleKeyPress(e) {
     let search = e.target.value.toLowerCase(),
-      results = [];
+      results = [],
+      npcs = [];
 
     if (search !== "") {
       results = _.mapValues(npcData, function(k, v) {
@@ -31,20 +54,14 @@ class App extends Component {
       this.setState({ keys: [] });
     }
   }
-
   render() {
     const items = [];
     this.state.keys.forEach(item => {
       items.push(<Item key={item} dataKey={item} />);
     });
-
     return (
-      <div className="App">
-        <header className="App-header">
-          Helbreath Olympia NPC Drop Search
-        </header>
-
-        <div class="App-search">
+      <div>
+        <div className="App-search">
           <input
             type="text"
             placeholder="i.e. exceptional, plate mail"
@@ -53,7 +70,7 @@ class App extends Component {
           />
         </div>
 
-        <div class="App-data">
+        <div className="App-data">
           {items.length === 0 ? (
             <p>
               Search for items to see what NPC's drop them: i.e. exceptional
@@ -67,13 +84,50 @@ class App extends Component {
   }
 }
 
+class NpcView extends Component {
+  render() {
+    let keys = [];
+    keys = _.pickBy(
+      npcData,
+      function(o, k) {
+        if (o.find(val => val.includes(this.props.npc))) {
+          return true;
+        }
+      }.bind(this)
+    );
+
+    const items = [];
+    Object.keys(keys).forEach(item => {
+      items.push(
+        <p className="npcItem" key={item}>
+          {item}
+        </p>
+      );
+    });
+
+    return (
+      <div className="App-data">
+        <Link to={`/`}>Back to main search</Link>
+        <h1>{this.props.npc}</h1>
+        <p>Drop List:</p>
+        {items}
+      </div>
+    );
+  }
+}
+
 class Item extends Component {
   render() {
+    const npcs = [];
+    npcData[this.props.dataKey].forEach(npc => {
+      npcs.push(<Npc key={npc} npc={npc} />);
+    });
+
     return (
       <div className="Item" key={this.props.dataKey}>
         <h1>{this.props.dataKey}</h1>
         <h2>Dropped by:</h2>
-        <Npc npcs={npcData[this.props.dataKey]} />
+        <div>{npcs}</div>
       </div>
     );
   }
@@ -81,7 +135,7 @@ class Item extends Component {
 
 class Npc extends Component {
   render() {
-    return <p>{this.props.npcs.join(", ")}</p>;
+    return <Link to={`/m/${this.props.npc}`}>{this.props.npc}</Link>;
   }
 }
 

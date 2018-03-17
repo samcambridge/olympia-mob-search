@@ -1,65 +1,76 @@
 body {
-  font-size: 12px;
+    font-size: 12px;
 }
 
 * {
-  outline: none;
-  text-transform: capitalize;
+    outline: none;
+    text-transform: capitalize;
 }
 
-.App {
-}
+.App {}
 
 .App-logo {
-  height: 80px;
+    height: 80px;
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-  text-align: center;
-  font-size: 3rem;
-  line-height: 9rem;
+    background-color: #222;
+    height: 150px;
+    padding: 20px;
+    color: white;
+    text-align: center;
+    font-size: 3rem;
+    line-height: 9rem;
 }
 
 .App-search,
 .App-data {
-  width: 100%;
-  max-width: 1000px;
-  margin: 4rem auto;
-  border: 1px solid #ddd;
-  padding: 2rem;
+    width: 100%;
+    max-width: 1000px;
+    margin: 4rem auto;
+    border: 1px solid #ddd;
+    padding: 2rem;
 }
 
 input {
-  width: 100%;
-  padding: 1rem;
-  box-sizing: border-box;
-  font-size: 1rem;
+    width: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+    font-size: 1rem;
 }
 
 .Item {
-  border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
 }
 
 p {
-  font-size: 1rem;
+    font-size: 1rem;
 }
 
-/* mobile */ @media only screen
-and (min-device-width : 320px) and (max-device-width : 667px) {
+p.npcItem {
+    display: inline-block;
+    width: 25%;
+    margin-bottom: 0px;
+}
 
-  .App-search,
-  .App-data {
-    max-width: 250px;
-  }
+a {
+    font-size: 1rem;
+    color: black;
+    display: inline-block;
+    margin-right: 5px;
+}
 
-  .App-header {
-    height: 100px;
-    font-size: 2rem;
-    line-height: 2.8rem;
-  }
 
+/* mobile */
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 667px) {
+    .App-search,
+    .App-data {
+        max-width: 250px;
+    }
+    .App-header {
+        height: 100px;
+        font-size: 2rem;
+        line-height: 2.8rem;
+    }
 }
