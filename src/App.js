@@ -39,8 +39,7 @@ class ItemSearch extends Component {
 
   handleKeyPress(e) {
     let search = e.target.value.toLowerCase(),
-      results = [],
-      npcs = [];
+      results = [];
 
     if (search !== "") {
       results = _.mapValues(npcData, function(k, v) {
