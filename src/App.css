@@ -74,4 +74,7 @@ a {
         font-size: 2rem;
         line-height: 2.8rem;
     }
+    p.npcItem {
+        width: 100%;
+    }
 }
