@@ -12,7 +12,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <header className="App-header">
-            Helbreath Olympia NPC Drop Search
+            Helbreath Olympia NPC Drop Searc
           </header>
 
           <Route exact={true} path="/" component={ItemSearch} />
