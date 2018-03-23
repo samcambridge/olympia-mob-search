@@ -13,14 +13,22 @@ body {
     height: 80px;
 }
 
+nav {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 15px;
+}
+
 .App-header {
     background-color: #222;
-    height: 150px;
-    padding: 20px;
+    padding: 40px;
     color: white;
     text-align: center;
     font-size: 3rem;
-    line-height: 9rem;
+}
+
+.App-header small {
+    font-size: 16px;
+    text-transform: none;
 }
 
 .App-search,
