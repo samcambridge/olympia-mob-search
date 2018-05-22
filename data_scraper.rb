@@ -19,7 +19,7 @@ mob_pages = page.all('.postcontent a').map { |a| a['href'] }
 # init data hash
 data = {}
 
-forget_about = ['weapons', 'armours', 'rares', 'semi-']
+forget_about = ['weapons', 'armours', 'rares', 'semi-', 'uncommon']
 
 # loop pages
 mob_pages.each do |mob_page|
