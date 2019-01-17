@@ -60,7 +60,14 @@ class Calculator extends Component {
     var total = +strength.value + +dexterity.value + +intellect.value + +magic.value + +vitallity.value + +luck.value
 
     var points = this.getPoints();
-    this.calculate(points, remainingpoints, level, rebirth, total);
+    this.calculateStats(points, remainingpoints, level, rebirth, total);
+    this.calculateAttributes(vitallity.value, level.value, strength.value)
+  }
+
+  calculateAttributes(vitallity, level, strength){
+    var new_hp = +(vitallity * 2) + +(level * 5 / 2) + +(strength * 2 / 3);
+    var health = document.getElementById("health");
+    health.innerHTML = Math.floor(new_hp)
   }
 
   getPoints(){
@@ -100,7 +107,7 @@ class Calculator extends Component {
     return points;
   }
 
-  calculate(points, remainingpoints, level, rebirth, total) {
+  calculateStats(points, remainingpoints, level, rebirth, total) {
     //this is basically the calculator, figures out level/rebirth/remainingpoints
     for (var i = 0; i < points.length; i++) {
       //if total is less than/equal to 70 set the remainingpoints value to be the first points array minus total
@@ -131,7 +138,6 @@ class Calculator extends Component {
         event.target.value = 200
       }
       var points = this.getPoints();
-
       var strength = document.getElementById("strength");
       var dexterity = document.getElementById("dexterity");
       var intellect = document.getElementById("intellect");
@@ -176,7 +182,8 @@ class Calculator extends Component {
           total = 562
         }
         //loop through points array
-        this.calculate(points, remainingpoints, level, rebirth, total);
+        this.calculateStats(points, remainingpoints, level, rebirth, total);
+        this.calculateAttributes(vitallity.value, level.value, strength.value)
       }
     }
   }
@@ -192,7 +199,8 @@ class Calculator extends Component {
         luck<NumericInput min={10} max={200} value={10} id="luck" onInput={this.handleChange} onBlur={this.handleChange} onKeyDown={this.handleChange}/><a id="plus_luck" onClick={this.isKeyPressed}>+</a><a id="minus_luck" onClick={this.isKeyPressed}>-</a><br/>
         level<NumericInput min={1} max={140} value={1} id="level"/><br/>
         rebirth<NumericInput min={0} max={25} value={0} id="rebirth"/><br/>
-        remaining points<NumericInput min={0} max={10} value={10} id="remainingpoints"/>
+        remaining points<NumericInput min={0} max={10} value={10} id="remainingpoints"/><br/>
+        Health: <span id="health">28</span>
       </div>
     );
   }
