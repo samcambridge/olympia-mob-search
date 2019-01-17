@@ -35,7 +35,17 @@ class Calculator extends Component {
     if (total < 562) {
       if (Number(attribute_field.value) < 200) {
         if (plus_or_minus === "plus") {
-          attribute_field.value = +attribute_field.value + +value
+          if (value === 10) {
+            if (total > 552) {
+              value = 562 - total
+              console.log(value);
+              attribute_field.value = +attribute_field.value + +value
+            } else {
+              attribute_field.value = +attribute_field.value + +value
+            }
+          } else {
+            attribute_field.value = +attribute_field.value + +value
+          }
         }
       }
       if (value === 10 && Number(attribute_field.value) > 190) {
@@ -45,7 +55,7 @@ class Calculator extends Component {
         }
       }
     }
-    if (value === 10 && Number(attribute_field.value) < 20) {
+    if (value === 10 && Number(attribute_field.value) <= 20) {
       value = attribute_field.value - 10
       if (plus_or_minus === "minus") {
         attribute_field.value = attribute_field.value - value
@@ -61,6 +71,9 @@ class Calculator extends Component {
         attribute_field.value = attribute_field.value - value
       }
     }
+
+    //called again to find get total
+    var total = +strength.value + +dexterity.value + +intellect.value + +magic.value + +vitallity.value + +luck.value
 
     var points = this.getPoints();
     this.calculateStats(points, remainingpoints, level, rebirth, total);
@@ -125,17 +138,17 @@ class Calculator extends Component {
       //if total is less than/equal to 70 set the remainingpoints value to be the first points array minus total
       //this is slightly different to all other remaining points as at level 1 you have a maxmimum of 10 points remaining instead of 3
       if (total <= 70) {
-        remainingpoints.value = points[0].points - total
+        remainingpoints.innerHTML = points[0].points - total
         level.value = points[0].level
-        rebirth.value = points[0].rebirth
+        rebirth.innerHTML = points[0].rebirth
       }
       if (points[i + 1] !== undefined) {
         //find out which value i am inbetween
         if (total > points[i].points && total <= points[i + 1].points) {
           //set values
-          remainingpoints.value = points[i + 1].points - total
+          remainingpoints.innerHTML = points[i + 1].points - total
           level.value = points[i + 1].level
-          rebirth.value = points[i + 1].rebirth
+          rebirth.innerHTML = points[i + 1].rebirth
         }
       }
     }
@@ -203,19 +216,61 @@ class Calculator extends Component {
   render() {
     return (
       <div className="App-search">
-        strength<NumericInput min={10} max={200} value={10} id="strength" onInput={this.handleChange} onBlur={this.handleChange} onKeyDown={this.handleChange}/><a id="plus_strength" onClick={this.isKeyPressed}>+</a><a id="minus_strength" onClick={this.isKeyPressed}>-</a><br/>
-        dexterity<NumericInput min={10} max={200} value={10} id="dexterity" onInput={this.handleChange} onBlur={this.handleChange} onKeyDown={this.handleChange}/><a id="plus_dexterity" onClick={this.isKeyPressed}>+</a><a id="minus_dexterity" onClick={this.isKeyPressed}>-</a><br/>
-        intellect<NumericInput min={10} max={200} value={10} id="intellect" onInput={this.handleChange} onBlur={this.handleChange} onKeyDown={this.handleChange}/><a id="plus_intellect" onClick={this.isKeyPressed}>+</a><a id="minus_intellect" onClick={this.isKeyPressed}>-</a><br/>
-        magic<NumericInput min={10} max={200} value={10} id="magic" onInput={this.handleChange} onBlur={this.handleChange} onKeyDown={this.handleChange}/><a id="plus_magic" onClick={this.isKeyPressed}>+</a><a id="minus_magic" onClick={this.isKeyPressed}>-</a><br/>
-        vitallity<NumericInput min={10} max={200} value={10} id="vitallity" onInput={this.handleChange} onBlur={this.handleChange} onKeyDown={this.handleChange}/><a id="plus_vitallity" onClick={this.isKeyPressed}>+</a><a id="minus_vitallity" onClick={this.isKeyPressed}>-</a><br/>
-        luck<NumericInput min={10} max={200} value={10} id="luck" onInput={this.handleChange} onBlur={this.handleChange} onKeyDown={this.handleChange}/><a id="plus_luck" onClick={this.isKeyPressed}>+</a><a id="minus_luck" onClick={this.isKeyPressed}>-</a><br/>
-        level<NumericInput min={1} max={140} value={1} id="level"/><br/>
-        rebirth<NumericInput min={0} max={25} value={0} id="rebirth"/><br/>
-        remaining points<NumericInput min={0} max={10} value={10} id="remainingpoints"/><br/>
-        Health: <span id="health">28</span><br/>
-        Mana: <span id="mana">27</span><br/>
-        Stamina: <span id="stamina">22</span><br/>
-        Max Weight: <span id="load">55</span>
+        <div className="simulator-container">
+          <div className="absolute">
+            <div className="simulator-title">
+              The character simulator allows you to test different possible stats for your character.<br/>
+              Hold Shift to change by 10 points.<br/>
+              Or type in the attributes box.
+            </div>
+            <div className="level">
+              Level: <NumericInput size={3} readOnly min={1} max={140} value={1} id="level"/>
+            </div>
+            <div className="rebirth">
+              Rebirth level: <span id="rebirth">0</span>
+            </div>
+            <div className="remainingpoints">
+              Points left <span id="remainingpoints">10</span>
+            </div>
+            <div className="health">
+              Health points <span id="health">28</span>
+            </div>
+            <div className="mana">
+              Mana points <span id="mana">27</span>
+            </div>
+            <div className="stamina">
+              Stamina <span id="stamina">22</span>
+            </div>
+            <div className="load">
+              Max weight <span id="load">22</span>
+            </div>
+            <div className="strength">
+              STR <NumericInput size={3} min={10} max={200} value={10} id="strength" onInput={this.handleChange} onBlur={this.handleChange} onKeyDown={this.handleChange}/>
+            <a id="plus_strength" className="plus_or_minus" onClick={this.isKeyPressed}>+</a><a id="minus_strength" className="plus_or_minus" onClick={this.isKeyPressed}>-</a>
+            </div>
+            <div className="vitallity">
+              VIT <NumericInput size={3} min={10} max={200} value={10} id="vitallity" onInput={this.handleChange} onBlur={this.handleChange} onKeyDown={this.handleChange}/>
+              <a id="plus_vitallity" className="plus_or_minus" onClick={this.isKeyPressed}>+</a><a id="minus_vitallity" className="plus_or_minus" onClick={this.isKeyPressed}>-</a>
+            </div>
+            <div className="dexterity">
+              DEX <NumericInput size={3} min={10} max={200} value={10} id="dexterity" onInput={this.handleChange} onBlur={this.handleChange} onKeyDown={this.handleChange}/>
+              <a id="plus_dexterity" className="plus_or_minus" onClick={this.isKeyPressed}>+</a><a id="minus_dexterity" className="plus_or_minus" onClick={this.isKeyPressed}>-</a>
+            </div>
+            <div className="intellect">
+              INT <NumericInput size={3} min={10} max={200} value={10} id="intellect" onInput={this.handleChange} onBlur={this.handleChange} onKeyDown={this.handleChange}/>
+              <a id="plus_intellect" className="plus_or_minus" onClick={this.isKeyPressed}>+</a><a id="minus_intellect" className="plus_or_minus" onClick={this.isKeyPressed}>-</a>
+            </div>
+            <div className="magic">
+              MAG <NumericInput size={3} min={10} max={200} value={10} id="magic" onInput={this.handleChange} onBlur={this.handleChange} onKeyDown={this.handleChange}/>
+              <a id="plus_magic" className="plus_or_minus" onClick={this.isKeyPressed}>+</a><a id="minus_magic" className="plus_or_minus" onClick={this.isKeyPressed}>-</a>
+            </div>
+            <div className="luck">
+              LUK <NumericInput size={3} min={10} max={200} value={10} id="luck" onInput={this.handleChange} onBlur={this.handleChange} onKeyDown={this.handleChange}/>
+              <a id="plus_luck" className="plus_or_minus" onClick={this.isKeyPressed}>+</a><a id="minus_luck" className="plus_or_minus" onClick={this.isKeyPressed}>-</a>
+            </div>
+          </div>
+          <img src={'/character_simulator.png'} alt="cunt" className="simulator-image"/>
+        </div>
       </div>
     );
   }
