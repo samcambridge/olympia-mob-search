@@ -91,11 +91,11 @@ a {
   cursor: default!important;
 }
 
-.simulator-container, ::selection {
+.plus-or-minus::selection {
   background: transparent; /* WebKit/Blink Browsers */
 }
 
-.simulator-container, ::-moz-selection {
+.plus-or-minus::-moz-selection {
   background: transparent; /* Gecko Browsers */
 }
 
@@ -210,11 +210,14 @@ a {
   left: 7px;
 }
 
-.plus_or_minus {
+.plus-or-minus {
   width: 19px;
   color: transparent;
   display: inline-block;
   cursor: pointer;
+  ::-moz-selection {
+    background: transparent; /* Gecko Browsers */
+  }
 }
 
 #plus_strength {
