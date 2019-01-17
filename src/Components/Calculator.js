@@ -19,15 +19,30 @@ class Calculator extends Component {
     var plus_or_minus = event.target.id.split("_")[0]
     var attribute = event.target.id.split("_")[1]
     var attribute_field = document.getElementById(attribute);
-    if (Number(attribute_field.value) < 200) {
-      if (plus_or_minus === "plus") {
-        attribute_field.value = +attribute_field.value + +value
+
+    var strength = document.getElementById("strength");
+    var dexterity = document.getElementById("dexterity");
+    var intellect = document.getElementById("intellect");
+    var magic = document.getElementById("magic");
+    var vitallity = document.getElementById("vitallity");
+    var luck = document.getElementById("luck");
+    var level = document.getElementById("level");
+    var rebirth = document.getElementById("rebirth");
+    var remainingpoints = document.getElementById("remainingpoints");
+
+    var total = +strength.value + +dexterity.value + +intellect.value + +magic.value + +vitallity.value + +luck.value
+
+    if (total < 562) {
+      if (Number(attribute_field.value) < 200) {
+        if (plus_or_minus === "plus") {
+          attribute_field.value = +attribute_field.value + +value
+        }
       }
-    }
-    if (value === 10 && Number(attribute_field.value) > 190) {
-      if (plus_or_minus === "plus") {
-        value = 200 - attribute_field.value
-        attribute_field.value = +attribute_field.value + +value
+      if (value === 10 && Number(attribute_field.value) > 190) {
+        if (plus_or_minus === "plus") {
+          value = 200 - attribute_field.value
+          attribute_field.value = +attribute_field.value + +value
+        }
       }
     }
     if (value === 10 && Number(attribute_field.value) < 20) {
@@ -47,27 +62,24 @@ class Calculator extends Component {
       }
     }
 
-    var strength = document.getElementById("strength");
-    var dexterity = document.getElementById("dexterity");
-    var intellect = document.getElementById("intellect");
-    var magic = document.getElementById("magic");
-    var vitallity = document.getElementById("vitallity");
-    var luck = document.getElementById("luck");
-    var level = document.getElementById("level");
-    var rebirth = document.getElementById("rebirth");
-    var remainingpoints = document.getElementById("remainingpoints");
-
-    var total = +strength.value + +dexterity.value + +intellect.value + +magic.value + +vitallity.value + +luck.value
-
     var points = this.getPoints();
     this.calculateStats(points, remainingpoints, level, rebirth, total);
-    this.calculateAttributes(vitallity.value, level.value, strength.value)
+    this.calculateAttributes(vitallity.value, level.value, strength.value, magic.value, intellect.value)
   }
 
-  calculateAttributes(vitallity, level, strength){
+  calculateAttributes(vitallity, level, strength, magic, intellect){
     var new_hp = +(vitallity * 2) + +(level * 5 / 2) + +(strength * 2 / 3);
     var health = document.getElementById("health");
     health.innerHTML = Math.floor(new_hp)
+    var new_mana = +(magic * 2) + +(level * 2) + +(intellect / 2);
+    var mana = document.getElementById("mana");
+    mana.innerHTML = Math.floor(new_mana)
+    var new_stamina = +10 + +strength + +(level * 2);
+    var stamina = document.getElementById("stamina");
+    stamina.innerHTML = Math.floor(new_stamina)
+    var new_load = +(strength * 5) + +(level * 5);
+    var load = document.getElementById("load");
+    load.innerHTML = Math.floor(new_load)
   }
 
   getPoints(){
@@ -183,7 +195,7 @@ class Calculator extends Component {
         }
         //loop through points array
         this.calculateStats(points, remainingpoints, level, rebirth, total);
-        this.calculateAttributes(vitallity.value, level.value, strength.value)
+        this.calculateAttributes(vitallity.value, level.value, strength.value, magic.value, intellect.value)
       }
     }
   }
@@ -200,7 +212,10 @@ class Calculator extends Component {
         level<NumericInput min={1} max={140} value={1} id="level"/><br/>
         rebirth<NumericInput min={0} max={25} value={0} id="rebirth"/><br/>
         remaining points<NumericInput min={0} max={10} value={10} id="remainingpoints"/><br/>
-        Health: <span id="health">28</span>
+        Health: <span id="health">28</span><br/>
+        Mana: <span id="mana">27</span><br/>
+        Stamina: <span id="stamina">22</span><br/>
+        Max Weight: <span id="load">55</span>
       </div>
     );
   }
