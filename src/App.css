@@ -358,6 +358,34 @@ a {
   top: -3px;
 }
 
+.talents {
+  position: relative;
+  top: -215px;
+  padding: 0 25px 0 25px;
+  text-transform: none!important;
+  text-align: center;
+}
+
+.talents a {
+  cursor: pointer;
+  color: blue;
+  margin: 0 5px;
+  font-size: 14px;
+}
+
+.talents a::selection {
+  background: transparent; /* WebKit/Blink Browsers */
+}
+
+.talents a::-moz-selection {
+  background: transparent; /* Gecko Browsers */
+}
+
+
+.active {
+  color: #0ec00e!important;
+}
+
 /* mobile */
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 667px) {

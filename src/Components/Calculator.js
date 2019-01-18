@@ -8,6 +8,7 @@ class Calculator extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.isKeyPressed = this.isKeyPressed.bind(this);
+    this.addOrRemoveActive = this.addOrRemoveActive.bind(this);
   }
 
   isKeyPressed(event) {
@@ -81,7 +82,12 @@ class Calculator extends Component {
   }
 
   calculateAttributes(vitallity, level, strength, magic, intellect){
-    var new_hp = +(vitallity * 2) + +(level * 5 / 2) + +(strength * 2 / 3);
+    var xelima = document.getElementById("xelima");
+    if (xelima.classList.contains("active")) {
+      var new_hp = Math.floor(((+(vitallity * 2) + +(level * 5 / 2) + +(strength * 2 / 3)) / 100) * 75);
+    } else {
+      var new_hp = +(vitallity * 2) + +(level * 5 / 2) + +(strength * 2 / 3);
+    }
     //random calculation bug when clicking intro strength box at level 1
     if (new_hp === 29.166666666666668) {
       new_hp = 28
@@ -156,6 +162,50 @@ class Calculator extends Component {
         }
       }
     }
+  }
+
+  addOrRemoveActive(event){
+    var level = document.getElementById("level");
+    if (level.value < 10) {
+      alert("You need to be level 10 before choosing your first talent")
+    } else {
+      if (level.value >= 10 && level.value < 40) {
+        if (event.target.classList.contains("active")) {
+          event.target.classList.remove("active");
+        } else {
+          var active_talents = document.getElementsByClassName("active")
+          if (active_talents.length === 1) {
+            alert("You need to be level 40 before choosing your second talent")
+          } else {
+            if (active_talents.length < 2) {
+              event.target.classList.add("active");
+            } else {
+              alert("You can only select two talents");
+            }
+          }
+        }
+      }
+    }
+    if (level.value >= 40) {
+      var active_talents = document.getElementsByClassName("active")
+      if (event.target.classList.contains("active")) {
+        event.target.classList.remove("active");
+      } else {
+        if (active_talents.length < 2) {
+          event.target.classList.add("active");
+        } else {
+          alert("You can only select two talents");
+        }
+      }
+    }
+
+    var strength = document.getElementById("strength");
+    var intellect = document.getElementById("intellect");
+    var magic = document.getElementById("magic");
+    var vitallity = document.getElementById("vitallity");
+    var level = document.getElementById("level");
+
+    this.calculateAttributes(vitallity.value, level.value, strength.value, magic.value, intellect.value)
   }
 
   handleChange(event) {
@@ -273,7 +323,22 @@ class Calculator extends Component {
             <a id="plus_luck" className="plus-or-minus" onClick={this.isKeyPressed}>+</a><a id="minus_luck" className="plus-or-minus" onClick={this.isKeyPressed}>-</a>
             </div>
             <div className="talents">
-              Xelimia, Tank
+              Choose talents<br/>
+              <a id="shortsword" onClick={this.addOrRemoveActive}>Short Sword</a>
+              <a id="longsword" onClick={this.addOrRemoveActive}>Long Sword</a>
+              <a id="fencing" onClick={this.addOrRemoveActive}>Fencing</a>
+              <a id="axe" onClick={this.addOrRemoveActive}>Axe</a>
+              <a id="hammer" onClick={this.addOrRemoveActive}>Hammer</a>
+              <a id="archery" onClick={this.addOrRemoveActive}>Archery</a>
+              <a id="earth" onClick={this.addOrRemoveActive}>Earth</a>
+              <a id="lightning" onClick={this.addOrRemoveActive}>Lightning</a>
+              <a id="fire" onClick={this.addOrRemoveActive}>Fire</a>
+              <a id="ice" onClick={this.addOrRemoveActive}>Ice</a>
+              <a id="holy" onClick={this.addOrRemoveActive}>Holy</a>
+              <a id="poison" onClick={this.addOrRemoveActive}>Poison</a>
+              <a id="tank" onClick={this.addOrRemoveActive}>Tank</a>
+              <a id="xelima" onClick={this.addOrRemoveActive}>Xelima</a>
+              <a id="merien" onClick={this.addOrRemoveActive}>Merien</a>
             </div>
           </div>
           <img src={'/character_simulator.png'} alt="cunt" className="simulator-image"/>
