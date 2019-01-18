@@ -9,6 +9,8 @@ class Calculator extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.isKeyPressed = this.isKeyPressed.bind(this);
     this.addOrRemoveActive = this.addOrRemoveActive.bind(this);
+    this.calculateStats = this.calculateStats.bind(this);
+    this.addTalentAttributes = this.addTalentAttributes.bind(this);
   }
 
   isKeyPressed(event) {
@@ -143,6 +145,7 @@ class Calculator extends Component {
   }
 
   calculateStats(points, remainingpoints, level, rebirth, total) {
+    var active_talents = document.getElementsByClassName("active")
     //this is basically the calculator, figures out level/rebirth/remainingpoints
     for (var i = 0; i < points.length; i++) {
       //if total is less than/equal to 70 set the remainingpoints value to be the first points array minus total
@@ -162,10 +165,132 @@ class Calculator extends Component {
         }
       }
     }
+    //removing talents if go below certain level
+    if (level.value < 10) {
+      for (var i = 0; i < active_talents.length; i++) {
+        var id = active_talents[i].id
+        active_talents[i].classList.remove("active");
+        if (id === "tank") {
+          this.addTalentAttributes();
+        }
+      }
+    }
+    if (level.value > 10 && level.value < 40) {
+      if (active_talents.length > 1) {
+        var id = active_talents[i].id
+        active_talents[0].classList.remove("active");
+        if (active_talents[i].id === "tank") {
+          this.addTalentAttributes();
+        }
+      }
+    }
+  }
+
+  calculateTalentValue(level) {
+    if (level.value < 20) {
+     return 15
+    }
+    if (level.value >= 20 && level.value < 40) {
+      return 16
+    }
+    if (level.value >= 40 && level.value < 60) {
+      return 17
+    }
+    if (level.value >= 60 && level.value < 80) {
+      return 18
+    }
+    if (level.value >= 80 && level.value < 100) {
+      return 19
+    }
+    if (level.value >= 100 && level.value < 120) {
+      return 20
+    }
+    if (level.value >= 120 && level.value < 140) {
+      return 21
+    }
+    if (level.value == 140) {
+      return 22
+    }
+  }
+
+  addTankMerienCalculation(vitallity, level) {
+    if (level.value < 20) {
+      vitallity.value = +vitallity.value + 15
+    }
+    if (level.value >= 20 && level.value < 40) {
+      vitallity.value = +vitallity.value + 16
+    }
+    if (level.value >= 40 && level.value < 60) {
+      vitallity.value = +vitallity.value + 17
+    }
+    if (level.value >= 60 && level.value < 80) {
+      vitallity.value = +vitallity.value + 18
+    }
+    if (level.value >= 80 && level.value < 100) {
+      vitallity.value = +vitallity.value + 19
+    }
+    if (level.value >= 100 && level.value < 120) {
+      vitallity.value = +vitallity.value + 20
+    }
+    if (level.value >= 120 && level.value < 140) {
+      vitallity.value = +vitallity.value + 21
+    }
+    if (level.value == 140) {
+      vitallity.value = +vitallity.value + 22
+    }
+  }
+
+  removeTankMerienCalculation(vitallity, level) {
+    if (level.value < 20) {
+      vitallity.value = +vitallity.value - 15
+    }
+    if (level.value >= 20 && level.value < 40) {
+      vitallity.value = +vitallity.value - 16
+    }
+    if (level.value >= 40 && level.value < 60) {
+      vitallity.value = +vitallity.value - 17
+    }
+    if (level.value >= 60 && level.value < 80) {
+      vitallity.value = +vitallity.value - 18
+    }
+    if (level.value >= 80 && level.value < 100) {
+      vitallity.value = +vitallity.value - 19
+    }
+    if (level.value >= 100 && level.value < 120) {
+      vitallity.value = +vitallity.value - 20
+    }
+    if (level.value >= 120 && level.value < 140) {
+      vitallity.value = +vitallity.value - 21
+    }
+    if (level.value == 140) {
+      vitallity.value = +vitallity.value - 22
+    }
+  }
+
+  addTalentAttributes(event){
+    var vitallity = document.getElementById("vitallity");
+    var strength = document.getElementById("strength");
+    var magic = document.getElementById("magic");
+    var intellect = document.getElementById("intellect");
+    var level = document.getElementById("level");
+    var merien = document.getElementById("merien");
+    var tank = document.getElementById("tank");
+    if (merien.classList.contains("active")) {
+    }
+    if (tank.classList.contains("active")) {
+      vitallity.classList.add("talent-attribute")
+      this.addTankMerienCalculation(vitallity, level)
+    } else {
+      vitallity.classList.remove("talent-attribute")
+      this.removeTankMerienCalculation(vitallity, level)
+    }
+    this.calculateAttributes(vitallity.value, level.value, strength.value, magic.value, intellect.value)
   }
 
   addOrRemoveActive(event){
     var level = document.getElementById("level");
+    var ids = [];
+    var active_talents = document.getElementsByClassName("active")
     if (level.value < 10) {
       alert("You need to be level 10 before choosing your first talent")
     } else {
@@ -173,12 +298,17 @@ class Calculator extends Component {
         if (event.target.classList.contains("active")) {
           event.target.classList.remove("active");
         } else {
-          var active_talents = document.getElementsByClassName("active")
+          for (var i = 0; i < active_talents.length; i++) {
+            ids.push(active_talents[i].id)
+          }
           if (active_talents.length === 1) {
             alert("You need to be level 40 before choosing your second talent")
           } else {
             if (active_talents.length < 2) {
               event.target.classList.add("active");
+              for (var i = 0; i < active_talents.length; i++) {
+                ids.push(active_talents[i].id)
+              }
             } else {
               alert("You can only select two talents");
             }
@@ -187,25 +317,33 @@ class Calculator extends Component {
       }
     }
     if (level.value >= 40) {
-      var active_talents = document.getElementsByClassName("active")
+      for (var i = 0; i < active_talents.length; i++) {
+        ids.push(active_talents[i].id)
+      }
       if (event.target.classList.contains("active")) {
         event.target.classList.remove("active");
       } else {
         if (active_talents.length < 2) {
           event.target.classList.add("active");
+          for (var i = 0; i < active_talents.length; i++) {
+            ids.push(active_talents[i].id)
+          }
         } else {
           alert("You can only select two talents");
         }
       }
     }
-
-    var strength = document.getElementById("strength");
-    var intellect = document.getElementById("intellect");
-    var magic = document.getElementById("magic");
-    var vitallity = document.getElementById("vitallity");
-    var level = document.getElementById("level");
-
-    this.calculateAttributes(vitallity.value, level.value, strength.value, magic.value, intellect.value)
+    if (ids.includes("tank") || ids.includes("merien")) {
+      this.addTalentAttributes();
+    }
+    if (ids.includes("xelima")) {
+      var strength = document.getElementById("strength");
+      var intellect = document.getElementById("intellect");
+      var magic = document.getElementById("magic");
+      var vitallity = document.getElementById("vitallity");
+      var level = document.getElementById("level");
+      this.calculateAttributes(vitallity.value, level.value, strength.value, magic.value, intellect.value)
+    }
   }
 
   handleChange(event) {

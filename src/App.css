@@ -381,6 +381,9 @@ a {
   background: transparent; /* Gecko Browsers */
 }
 
+.talent-attribute {
+  color: red!important;
+}
 
 .active {
   color: #0ec00e!important;
