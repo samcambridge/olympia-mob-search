@@ -41,7 +41,6 @@ class Calculator extends Component {
           if (value === 10) {
             if (total > 552) {
               value = 562 - total
-              console.log(value);
               attribute_field.value = +attribute_field.value + +value
             } else {
               attribute_field.value = +attribute_field.value + +value
@@ -213,57 +212,57 @@ class Calculator extends Component {
     }
   }
 
-  addTankMerienCalculation(vitallity, level) {
+  addTankMerienCalculation(attribute, level) {
     if (level.value < 20) {
-      vitallity.value = +vitallity.value + 15
+      attribute.value = +attribute.value + 15
     }
     if (level.value >= 20 && level.value < 40) {
-      vitallity.value = +vitallity.value + 16
+      attribute.value = +attribute.value + 16
     }
     if (level.value >= 40 && level.value < 60) {
-      vitallity.value = +vitallity.value + 17
+      attribute.value = +attribute.value + 17
     }
     if (level.value >= 60 && level.value < 80) {
-      vitallity.value = +vitallity.value + 18
+      attribute.value = +attribute.value + 18
     }
     if (level.value >= 80 && level.value < 100) {
-      vitallity.value = +vitallity.value + 19
+      attribute.value = +attribute.value + 19
     }
     if (level.value >= 100 && level.value < 120) {
-      vitallity.value = +vitallity.value + 20
+      attribute.value = +attribute.value + 20
     }
     if (level.value >= 120 && level.value < 140) {
-      vitallity.value = +vitallity.value + 21
+      attribute.value = +attribute.value + 21
     }
     if (level.value == 140) {
-      vitallity.value = +vitallity.value + 22
+      attribute.value = +attribute.value + 22
     }
   }
 
-  removeTankMerienCalculation(vitallity, level) {
+  removeTankMerienCalculation(attribute, level) {
     if (level.value < 20) {
-      vitallity.value = +vitallity.value - 15
+      attribute.value = +attribute.value - 15
     }
     if (level.value >= 20 && level.value < 40) {
-      vitallity.value = +vitallity.value - 16
+      attribute.value = +attribute.value - 16
     }
     if (level.value >= 40 && level.value < 60) {
-      vitallity.value = +vitallity.value - 17
+      attribute.value = +attribute.value - 17
     }
     if (level.value >= 60 && level.value < 80) {
-      vitallity.value = +vitallity.value - 18
+      attribute.value = +attribute.value - 18
     }
     if (level.value >= 80 && level.value < 100) {
-      vitallity.value = +vitallity.value - 19
+      attribute.value = +attribute.value - 19
     }
     if (level.value >= 100 && level.value < 120) {
-      vitallity.value = +vitallity.value - 20
+      attribute.value = +attribute.value - 20
     }
     if (level.value >= 120 && level.value < 140) {
-      vitallity.value = +vitallity.value - 21
+      attribute.value = +attribute.value - 21
     }
     if (level.value == 140) {
-      vitallity.value = +vitallity.value - 22
+      attribute.value = +attribute.value - 22
     }
   }
 
@@ -275,68 +274,67 @@ class Calculator extends Component {
     var level = document.getElementById("level");
     var merien = document.getElementById("merien");
     var tank = document.getElementById("tank");
-    if (merien.classList.contains("active")) {
+    if (event === "merien") {
+      if (merien.classList.contains("active")) {
+        magic.classList.add("talent-attribute")
+        this.addTankMerienCalculation(magic, level)
+      } else {
+        magic.classList.remove("talent-attribute")
+        this.removeTankMerienCalculation(magic, level)
+      }
     }
-    if (tank.classList.contains("active")) {
-      vitallity.classList.add("talent-attribute")
-      this.addTankMerienCalculation(vitallity, level)
-    } else {
-      vitallity.classList.remove("talent-attribute")
-      this.removeTankMerienCalculation(vitallity, level)
+    if (event === "tank") {
+      if (tank.classList.contains("active")) {
+        vitallity.classList.add("talent-attribute")
+        this.addTankMerienCalculation(vitallity, level)
+      } else {
+        vitallity.classList.remove("talent-attribute")
+        this.removeTankMerienCalculation(vitallity, level)
+      }
     }
     this.calculateAttributes(vitallity.value, level.value, strength.value, magic.value, intellect.value)
   }
 
   addOrRemoveActive(event){
     var level = document.getElementById("level");
-    var ids = [];
     var active_talents = document.getElementsByClassName("active")
     if (level.value < 10) {
-      alert("You need to be level 10 before choosing your first talent")
+      return alert("You need to be level 10 before choosing your first talent")
     } else {
       if (level.value >= 10 && level.value < 40) {
         if (event.target.classList.contains("active")) {
           event.target.classList.remove("active");
         } else {
-          for (var i = 0; i < active_talents.length; i++) {
-            ids.push(active_talents[i].id)
-          }
           if (active_talents.length === 1) {
-            alert("You need to be level 40 before choosing your second talent")
+            return alert("You need to be level 40 before choosing your second talent")
           } else {
             if (active_talents.length < 2) {
               event.target.classList.add("active");
-              for (var i = 0; i < active_talents.length; i++) {
-                ids.push(active_talents[i].id)
-              }
             } else {
-              alert("You can only select two talents");
+              return alert("You can only select two talents");
             }
           }
         }
       }
     }
     if (level.value >= 40) {
-      for (var i = 0; i < active_talents.length; i++) {
-        ids.push(active_talents[i].id)
-      }
       if (event.target.classList.contains("active")) {
         event.target.classList.remove("active");
       } else {
         if (active_talents.length < 2) {
           event.target.classList.add("active");
-          for (var i = 0; i < active_talents.length; i++) {
-            ids.push(active_talents[i].id)
-          }
         } else {
-          alert("You can only select two talents");
+          return alert("You can only select two talents");
         }
       }
     }
-    if (ids.includes("tank") || ids.includes("merien")) {
-      this.addTalentAttributes();
+    if (event.target.id === "tank") {
+      this.addTalentAttributes("tank");
     }
-    if (ids.includes("xelima")) {
+    if (event.target.id === "merien") {
+      this.addTalentAttributes("merien");
+    }
+    if (event.target.id === "xelima") {
       var strength = document.getElementById("strength");
       var intellect = document.getElementById("intellect");
       var magic = document.getElementById("magic");
