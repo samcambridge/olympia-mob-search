@@ -33,23 +33,21 @@ class Calculator extends Component {
     var rebirth = document.getElementById("rebirth");
     var remainingpoints = document.getElementById("remainingpoints");
 
+    var tank = document.getElementById("tank");
+    if (tank.classList.contains("active")) {
+      vitallity.classList.remove("talent-attribute")
+      tank.classList.remove("active")
+      this.removeTankMerienCalculation(vitallity, level)
+    }
+
     var total = +strength.value + +dexterity.value + +intellect.value + +magic.value + +vitallity.value + +luck.value
 
     var talent_number = this.calculateTalentValue(level)
-    var tank = document.getElementById("tank");
-    var merien = document.getElementById("merien");
     var n200 = 200
     var n190 = 190
     var n20 = 20
     var n10 = 10
-    if (tank.classList.contains("active")) {
-      total = total - talent_number
-      var n200 = 200 + talent_number
-      var n190 = 190 + talent_number
-      var n20 = 20 + talent_number
-      var n10 = 10 + talent_number
-    }
-    if (merien.classList.contains("active")) {
+    if (tank.classList.contains("active") && event.target.id === "plus_vitallity") {
       total = total - talent_number
       var n200 = 200 + talent_number
       var n190 = 190 + talent_number
@@ -303,22 +301,13 @@ class Calculator extends Component {
 
   addTalentAttributes(event){
     var active_talents = document.getElementsByClassName("active")
-    var vitallity = document.getElementById("vitallity");
     var strength = document.getElementById("strength");
     var magic = document.getElementById("magic");
     var intellect = document.getElementById("intellect");
-    var level = document.getElementById("level");
     var merien = document.getElementById("merien");
+    var vitallity = document.getElementById("vitallity");
+    var level = document.getElementById("level");
     var tank = document.getElementById("tank");
-    if (event === "merien") {
-      if (merien.classList.contains("active")) {
-        magic.classList.add("talent-attribute")
-        this.addTankMerienCalculation(magic, level)
-      } else {
-        magic.classList.remove("talent-attribute")
-        this.removeTankMerienCalculation(magic, level)
-      }
-    }
     if (event === "tank") {
       if (tank.classList.contains("active")) {
         vitallity.classList.add("talent-attribute")
