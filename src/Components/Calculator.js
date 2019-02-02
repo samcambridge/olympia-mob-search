@@ -34,29 +34,23 @@ class Calculator extends Component {
     var remainingpoints = document.getElementById("remainingpoints");
 
     var tank = document.getElementById("tank");
+    var merien = document.getElementById("merien");
     if (tank.classList.contains("active")) {
       vitallity.classList.remove("talent-attribute")
       tank.classList.remove("active")
-      this.removeTankMerienCalculation(vitallity, level)
+      this.removeTankCalculation(vitallity, level)
+    }
+    if (merien.classList.contains("active")) {
+      strength.classList.remove("talent-attribute")
+      magic.classList.remove("talent-attribute")
+      merien.classList.remove("active")
+      this.removeMerienCalculation(strength, magic)
     }
 
     var total = +strength.value + +dexterity.value + +intellect.value + +magic.value + +vitallity.value + +luck.value
 
-    var talent_number = this.calculateTalentValue(level)
-    var n200 = 200
-    var n190 = 190
-    var n20 = 20
-    var n10 = 10
-    if (tank.classList.contains("active") && event.target.id === "plus_vitallity") {
-      total = total - talent_number
-      var n200 = 200 + talent_number
-      var n190 = 190 + talent_number
-      var n20 = 20 + talent_number
-      var n10 = 10 + talent_number
-    }
-
     if (total < 562) {
-      if (Number(attribute_field.value) < n200) {
+      if (Number(attribute_field.value) < 200) {
         if (plus_or_minus === "plus") {
           if (value === 10) {
             if (total > 552) {
@@ -70,25 +64,25 @@ class Calculator extends Component {
           }
         }
       }
-      if (value === 10 && Number(attribute_field.value) > n190) {
+      if (value === 10 && Number(attribute_field.value) > 190) {
         if (plus_or_minus === "plus") {
-          value = n200 - attribute_field.value
+          value = 200 - attribute_field.value
           attribute_field.value = +attribute_field.value + +value
         }
       }
     }
-    if (value === 10 && Number(attribute_field.value) <= n20) {
-      value = attribute_field.value - n10
+    if (value === 10 && Number(attribute_field.value) <= 20) {
+      value = attribute_field.value - 10
       if (plus_or_minus === "minus") {
         attribute_field.value = attribute_field.value - value
       }
     }
-    if (value === 10 && Number(attribute_field.value) > n20) {
+    if (value === 10 && Number(attribute_field.value) > 20) {
       if (plus_or_minus === "minus") {
         attribute_field.value = attribute_field.value - value
       }
     }
-    if (value === 1 && Number(attribute_field.value) > n10) {
+    if (value === 1 && Number(attribute_field.value) > 10) {
       if (plus_or_minus === "minus") {
         attribute_field.value = attribute_field.value - value
       }
@@ -172,9 +166,6 @@ class Calculator extends Component {
     if (tank.classList.contains("active")) {
       total = total - this.calculateTalentValue(level)
     }
-    if (merien.classList.contains("active")) {
-      total = total - this.calculateTalentValue(level)
-    }
     //this is basically the calculator, figures out level/rebirth/remainingpoints
     for (var i = 0; i < points.length; i++) {
       //if total is less than/equal to 70 set the remainingpoints value to be the first points array minus total
@@ -201,7 +192,7 @@ class Calculator extends Component {
         active_talents[i].classList.remove("active");
         if (id === "tank") {
           vitallity.classList.remove("talent-attribute")
-          this.removeTankMerienCalculation(vitallity, level)
+          this.removeTankCalculation(vitallity, level)
           this.addTalentAttributes();
         }
       }
@@ -211,7 +202,7 @@ class Calculator extends Component {
         active_talents[0].classList.remove("active");
         if (active_talents[0].id === "tank") {
           vitallity.classList.remove("talent-attribute")
-          this.removeTankMerienCalculation(vitallity, level)
+          this.removeTankCalculation(vitallity, level)
           this.addTalentAttributes();
         }
       }
@@ -245,7 +236,7 @@ class Calculator extends Component {
     }
   }
 
-  addTankMerienCalculation(attribute, level) {
+  addTankCalculation(attribute, level) {
     if (level.value < 20) {
       attribute.value = +attribute.value + 15
     }
@@ -272,7 +263,7 @@ class Calculator extends Component {
     }
   }
 
-  removeTankMerienCalculation(attribute, level) {
+  removeTankCalculation(attribute, level) {
     if (level.value < 20) {
       attribute.value = +attribute.value - 15
     }
@@ -299,6 +290,16 @@ class Calculator extends Component {
     }
   }
 
+  removeMerienCalculation(strength, magic) {
+    strength.value = +strength.value - 15
+    magic.value = +magic.value - 15
+  }
+
+  addMerienCalculation(strength, magic) {
+    strength.value = +strength.value + 15
+    magic.value = +magic.value + 15
+  }
+
   addTalentAttributes(event){
     var active_talents = document.getElementsByClassName("active")
     var strength = document.getElementById("strength");
@@ -311,10 +312,21 @@ class Calculator extends Component {
     if (event === "tank") {
       if (tank.classList.contains("active")) {
         vitallity.classList.add("talent-attribute")
-        this.addTankMerienCalculation(vitallity, level)
+        this.addTankCalculation(vitallity, level)
       } else {
         vitallity.classList.remove("talent-attribute")
-        this.removeTankMerienCalculation(vitallity, level)
+        this.removeTankCalculation(vitallity, level)
+      }
+    }
+    if (event === "merien") {
+      if (merien.classList.contains("active")) {
+        strength.classList.add("talent-attribute")
+        magic.classList.add("talent-attribute")
+        this.addMerienCalculation(strength, magic)
+      } else {
+        strength.classList.remove("talent-attribute")
+        magic.classList.remove("talent-attribute")
+        this.removeMerienCalculation(strength, magic)
       }
     }
     this.calculateAttributes(vitallity.value, level.value, strength.value, magic.value, intellect.value)
@@ -370,6 +382,23 @@ class Calculator extends Component {
   }
 
   handleChange(event) {
+    var level = document.getElementById("level");
+    var strength = document.getElementById("strength");
+    var magic = document.getElementById("magic");
+    var vitallity = document.getElementById("vitallity");
+    var tank = document.getElementById("tank");
+    var merien = document.getElementById("merien");
+    if (tank.classList.contains("active")) {
+      vitallity.classList.remove("talent-attribute")
+      tank.classList.remove("active")
+      this.removeTankCalculation(vitallity, level)
+    }
+    if (merien.classList.contains("active")) {
+      strength.classList.remove("talent-attribute")
+      magic.classList.remove("talent-attribute")
+      merien.classList.remove("active")
+      this.removeMerienCalculation(strength, magic)
+    }
     //onkeydown disable arrow keys (fucks up calculations)
     if ( event.which === 38 || event.which === 40 ) {
       event.preventDefault();
@@ -378,13 +407,9 @@ class Calculator extends Component {
         event.target.value = 200
       }
       var points = this.getPoints();
-      var strength = document.getElementById("strength");
       var dexterity = document.getElementById("dexterity");
       var intellect = document.getElementById("intellect");
-      var magic = document.getElementById("magic");
-      var vitallity = document.getElementById("vitallity");
       var luck = document.getElementById("luck");
-      var level = document.getElementById("level");
       var rebirth = document.getElementById("rebirth");
       var remainingpoints = document.getElementById("remainingpoints");
 
