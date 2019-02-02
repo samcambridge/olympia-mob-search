@@ -109,7 +109,12 @@ a {
 .absolute {
   font-size: 18px;
   width: 410px;
+  height: 0px;
   position: absolute;
+}
+
+.active-angel {
+  border: 2px solid red;
 }
 
 .level {
@@ -382,6 +387,10 @@ a {
 }
 
 .talent-attribute {
+  color: #d7d73c!important;
+}
+
+.angel-attribute {
   color: #d7d73c!important;
 }
 

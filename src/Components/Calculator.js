@@ -11,6 +11,37 @@ class Calculator extends Component {
     this.addOrRemoveActive = this.addOrRemoveActive.bind(this);
     this.calculateStats = this.calculateStats.bind(this);
     this.addTalentAttributes = this.addTalentAttributes.bind(this);
+    this.addAngelAttribute = this.addAngelAttribute.bind(this);
+    this.removeAngel = this.removeAngel.bind(this);
+  }
+
+  addAngelAttribute(event) {
+    var level = document.getElementById("level");
+    if (level.value === "140") {
+      var active_angel = document.getElementsByClassName("active-angel")
+      var attr = event.target.id.split("_")[0];
+      var attribute = document.getElementById(attr)
+      if (event.target.classList.contains("active-angel")) {
+        event.target.classList.remove("active-angel")
+        attribute.classList.remove("angel-attribute")
+        attribute.value = +attribute.value - 16
+      } else {
+        if (active_angel.length === 0) {
+          event.target.classList.add("active-angel")
+          attribute.classList.add("angel-attribute")
+          attribute.value = +attribute.value + 16
+        }
+      }
+      var strength = document.getElementById("strength");
+      var dexterity = document.getElementById("dexterity");
+      var intellect = document.getElementById("intellect");
+      var magic = document.getElementById("magic");
+      var vitallity = document.getElementById("vitallity");
+      var luck = document.getElementById("luck");
+      this.calculateAttributes(vitallity.value, level.value, strength.value, magic.value, intellect.value)
+    } else {
+      return alert("You need to be atleast level 140 before adding an angel")
+    }
   }
 
   isKeyPressed(event) {
@@ -46,6 +77,8 @@ class Calculator extends Component {
       merien.classList.remove("active")
       this.removeMerienCalculation(strength, magic)
     }
+
+    this.removeAngel()
 
     var total = +strength.value + +dexterity.value + +intellect.value + +magic.value + +vitallity.value + +luck.value
 
@@ -97,6 +130,7 @@ class Calculator extends Component {
   }
 
   calculateAttributes(vitallity, level, strength, magic, intellect){
+    // calculate hp/mana etc
     var xelima = document.getElementById("xelima");
     if (xelima.classList.contains("active")) {
       var new_hp = Math.floor(((+(vitallity * 2) + +(level * 5 / 2) + +(strength * 2 / 3)) / 100) * 75);
@@ -118,6 +152,17 @@ class Calculator extends Component {
     var new_load = +(strength * 5) + +(level * 5);
     var load = document.getElementById("load");
     load.innerHTML = Math.floor(new_load)
+  }
+
+  removeAngel(){
+    var active_angel = document.getElementsByClassName("active-angel")
+    for (var i = 0; i < active_angel.length; i++) {
+      var attribute_id = active_angel[i].id.split("_")[0];
+      active_angel[i].classList.remove("active-angel")
+      var attribute = document.getElementById(attribute_id);
+      attribute.classList.remove("angel-attribute")
+      attribute.value = +attribute.value - 16
+    }
   }
 
   getPoints(){
@@ -158,6 +203,7 @@ class Calculator extends Component {
   }
 
   calculateStats(points, remainingpoints, level, rebirth, total) {
+    //this is the calculator that figures out level/rebirth/remainingpoints
     var active_talents = document.getElementsByClassName("active")
     var tank = document.getElementById("tank");
     var merien = document.getElementById("merien");
@@ -166,7 +212,6 @@ class Calculator extends Component {
     if (tank.classList.contains("active")) {
       total = total - this.calculateTalentValue(level)
     }
-    //this is basically the calculator, figures out level/rebirth/remainingpoints
     for (var i = 0; i < points.length; i++) {
       //if total is less than/equal to 70 set the remainingpoints value to be the first points array minus total
       //this is slightly different to all other remaining points as at level 1 you have a maxmimum of 10 points remaining instead of 3
@@ -336,14 +381,14 @@ class Calculator extends Component {
     var level = document.getElementById("level");
     var active_talents = document.getElementsByClassName("active")
     if (level.value < 10) {
-      return alert("You need to be level 10 before choosing your first talent")
+      return alert("You need to be atleast level 10 before choosing your first talent")
     } else {
       if (level.value >= 10 && level.value < 40) {
         if (event.target.classList.contains("active")) {
           event.target.classList.remove("active");
         } else {
           if (active_talents.length === 1) {
-            return alert("You need to be level 40 before choosing your second talent")
+            return alert("You need to be atleast level 40 before choosing your second talent")
           } else {
             if (active_talents.length < 2) {
               event.target.classList.add("active");
@@ -382,6 +427,9 @@ class Calculator extends Component {
   }
 
   handleChange(event) {
+    if (event.target.value === "") {
+      event.target.value = 10
+    }
     var level = document.getElementById("level");
     var strength = document.getElementById("strength");
     var magic = document.getElementById("magic");
@@ -399,6 +447,7 @@ class Calculator extends Component {
       merien.classList.remove("active")
       this.removeMerienCalculation(strength, magic)
     }
+    this.removeAngel()
     //onkeydown disable arrow keys (fucks up calculations)
     if ( event.which === 38 || event.which === 40 ) {
       event.preventDefault();
@@ -528,6 +577,12 @@ class Calculator extends Component {
             </div>
           </div>
           <img src={'/character_simulator.png'} alt="cunt" className="simulator-image"/>
+          <div>
+            <a id="strength_angel" onClick={this.addAngelAttribute}>Strength Angel+15</a><br />
+            <a id="dexterity_angel" onClick={this.addAngelAttribute}>Dexterity Angel+15</a><br />
+            <a id="intellect_angel" onClick={this.addAngelAttribute}>Intellect Angel+15</a><br />
+            <a id="magic_angel" onClick={this.addAngelAttribute}>Magic Angel+15</a>
+          </div>
         </div>
       </div>
     );
