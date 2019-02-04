@@ -91,6 +91,13 @@ a {
   cursor: default!important;
 }
 
+.angel-board {
+  width: 340px;
+  padding-top: 10px;
+  margin: 0 auto;
+  display: block;
+}
+
 .plus-or-minus::selection {
   background: transparent; /* WebKit/Blink Browsers */
 }
@@ -114,7 +121,7 @@ a {
 }
 
 .active-angel {
-  border: 2px solid red;
+  background: #ff000063;
 }
 
 .level {
@@ -396,6 +403,14 @@ a {
 
 .active {
   color: #0ec00e!important;
+}
+
+.angel {
+  padding: 4px;
+  left: 75px;
+  top: 55px;
+  position: relative;
+  width: 55px;
 }
 
 /* mobile */

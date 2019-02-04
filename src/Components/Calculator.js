@@ -576,13 +576,14 @@ class Calculator extends Component {
               <a id="merien" onClick={this.addOrRemoveActive}>Merien</a>
             </div>
           </div>
-          <img src={'/character_simulator.png'} alt="cunt" className="simulator-image"/>
-          <div>
-            <a id="strength_angel" onClick={this.addAngelAttribute}>Strength Angel+15</a><br />
-            <a id="dexterity_angel" onClick={this.addAngelAttribute}>Dexterity Angel+15</a><br />
-            <a id="intellect_angel" onClick={this.addAngelAttribute}>Intellect Angel+15</a><br />
-            <a id="magic_angel" onClick={this.addAngelAttribute}>Magic Angel+15</a>
+          <img src={'/character_simulator.png'} alt="charactersim" className="simulator-image"/>
+          <div className="absolute">
+            <img src={'/strengthangel.png'} className="angel" alt="strengthangel" id="strength_angel" onClick={this.addAngelAttribute}/>
+            <img src={'/dexterityangel.png'} className="angel" alt="strengthangel" id="dexterity_angel" onClick={this.addAngelAttribute}/>
+            <img src={'/intellectangel.png'} className="angel" alt="strengthangel" id="intellect_angel" onClick={this.addAngelAttribute}/>
+            <img src={'/magicangel.png'} className="angel" alt="strengthangel" id="magic_angel" onClick={this.addAngelAttribute}/>
           </div>
+          <img src={'/board.png'} alt="board" className="angel-board"/>
         </div>
       </div>
     );
