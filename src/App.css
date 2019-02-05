@@ -79,23 +79,22 @@ a {
 }
 
 .simulator-image {
-  display: block;
-  margin: 0 auto;
+  display: inline-block;
+  width: 410px;
+  padding-right: 10px;
+}
+.mod-image {
+  display: inline-block;
+
   width: 410px;
 }
 
+
 .simulator-container {
-  width: 410px;
+  width: 840px;
   margin: 0 auto;
   display: block;
   cursor: default!important;
-}
-
-.angel-board {
-  width: 340px;
-  padding-top: 10px;
-  margin: 0 auto;
-  display: block;
 }
 
 .plus-or-minus::selection {
@@ -407,9 +406,6 @@ a {
 
 .angel {
   padding: 4px;
-  left: 75px;
-  top: 55px;
-  position: relative;
   width: 55px;
 }
 

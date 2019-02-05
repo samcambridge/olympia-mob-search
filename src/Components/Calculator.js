@@ -577,13 +577,13 @@ class Calculator extends Component {
             </div>
           </div>
           <img src={'/character_simulator.png'} alt="charactersim" className="simulator-image"/>
-          <div className="absolute">
+          <img src={'/mod_simulator.png'} alt="charactersim" className="mod-image"/>
+          <div className="relative">
             <img src={'/strengthangel.png'} className="angel" alt="strengthangel" id="strength_angel" onClick={this.addAngelAttribute}/>
             <img src={'/dexterityangel.png'} className="angel" alt="strengthangel" id="dexterity_angel" onClick={this.addAngelAttribute}/>
             <img src={'/intellectangel.png'} className="angel" alt="strengthangel" id="intellect_angel" onClick={this.addAngelAttribute}/>
             <img src={'/magicangel.png'} className="angel" alt="strengthangel" id="magic_angel" onClick={this.addAngelAttribute}/>
           </div>
-          <img src={'/board.png'} alt="board" className="angel-board"/>
         </div>
       </div>
     );
