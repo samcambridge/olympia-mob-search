@@ -40,6 +40,15 @@ nav {
     padding: 2rem;
 }
 
+.App-stats {
+  width: 100%;
+  max-width: 1000px;
+  min-height: 550px;
+  margin: 4rem auto;
+  border: 1px solid #ddd;
+  padding: 2rem;
+}
+
 input {
     width: 100%;
     padding: 1rem;
@@ -82,16 +91,16 @@ a {
   display: inline-block;
   width: 410px;
   padding-right: 10px;
+  float: left;
 }
 .mod-image {
   display: inline-block;
-
   width: 410px;
 }
 
-
 .simulator-container {
-  width: 840px;
+  width: 100%;
+  max-width: 720px;
   margin: 0 auto;
   display: block;
   cursor: default!important;
@@ -402,6 +411,16 @@ a {
 
 .active {
   color: #0ec00e!important;
+}
+
+.angel-board {
+  width: 300px;
+}
+
+.angels {
+  position: relative;
+  bottom: 85px;
+  left: 20px;
 }
 
 .angel {

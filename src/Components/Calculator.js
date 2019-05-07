@@ -82,12 +82,12 @@ class Calculator extends Component {
 
     var total = +strength.value + +dexterity.value + +intellect.value + +magic.value + +vitallity.value + +luck.value
 
-    if (total < 562) {
+    if (total < 547) {
       if (Number(attribute_field.value) < 200) {
         if (plus_or_minus === "plus") {
           if (value === 10) {
-            if (total > 552) {
-              value = 562 - total
+            if (total > 537) {
+              value = 547 - total
               attribute_field.value = +attribute_field.value + +value
             } else {
               attribute_field.value = +attribute_field.value + +value
@@ -197,8 +197,7 @@ class Calculator extends Component {
     {level: 140, points: 490, rebirth: 1}, {level: 140, points: 493, rebirth: 2}, {level: 140, points: 496, rebirth: 3}, {level: 140, points: 499, rebirth: 4}, {level: 140, points: 502, rebirth: 5},
     {level: 140, points: 505, rebirth: 6}, {level: 140, points: 508, rebirth: 7}, {level: 140, points: 511, rebirth: 8}, {level: 140, points: 514, rebirth: 9}, {level: 140, points: 517, rebirth: 10},
     {level: 140, points: 520, rebirth: 11}, {level: 140, points: 523, rebirth: 12}, {level: 140, points: 526, rebirth: 13}, {level: 140, points: 529, rebirth: 14}, {level: 140, points: 532, rebirth: 15},
-    {level: 140, points: 535, rebirth: 16}, {level: 140, points: 538, rebirth: 17}, {level: 140, points: 541, rebirth: 18}, {level: 140, points: 544, rebirth: 19}, {level: 140, points: 547, rebirth: 20},
-    {level: 140, points: 550, rebirth: 21}, {level: 140, points: 553, rebirth: 22}, {level: 140, points: 556, rebirth: 23}, {level: 140, points: 559, rebirth: 24}, {level: 140, points: 562, rebirth: 25}]
+    {level: 140, points: 535, rebirth: 16}, {level: 140, points: 538, rebirth: 17}, {level: 140, points: 541, rebirth: 18}, {level: 140, points: 544, rebirth: 19}, {level: 140, points: 547, rebirth: 20}]
     return points;
   }
 
@@ -486,14 +485,14 @@ class Calculator extends Component {
       var total = +strength.value + +dexterity.value + +intellect.value + +magic.value + +vitallity.value + +luck.value
 
       if (event.target.value >= 10 && event.target.value <= 200) {
-        //if the total amount is over 562 (maximum points available)
-        if (total > 562) {
-          //take away the new total away from 562 to give the maximum points available
-          var figure = total - 562
+        //if the total amount is over 547 (maximum points available)
+        if (total > 547) {
+          //take away the new total away from 547 to give the maximum points available
+          var figure = total - 547
           //then set the entered value to be the maximum points available
           event.target.value = (event.target.value - figure)
-          //then set the total to be 562 as it still thinks its more
-          total = 562
+          //then set the total to be 547 as it still thinks its more
+          total = 547
         }
         //loop through points array
         this.calculateStats(points, remainingpoints, level, rebirth, total);
@@ -504,7 +503,7 @@ class Calculator extends Component {
 
   render() {
     return (
-      <div className="App-search">
+      <div className="App-stats">
         <div className="simulator-container">
           <div className="absolute">
             <div className="simulator-title">
@@ -577,8 +576,8 @@ class Calculator extends Component {
             </div>
           </div>
           <img src={'/character_simulator.png'} alt="charactersim" className="simulator-image"/>
-          <img src={'/mod_simulator.png'} alt="charactersim" className="mod-image"/>
-          <div className="relative">
+          <img src={'/board.png'} alt="board" className="angel-board"/>
+          <div className="angels">
             <img src={'/strengthangel.png'} className="angel" alt="strengthangel" id="strength_angel" onClick={this.addAngelAttribute}/>
             <img src={'/dexterityangel.png'} className="angel" alt="strengthangel" id="dexterity_angel" onClick={this.addAngelAttribute}/>
             <img src={'/intellectangel.png'} className="angel" alt="strengthangel" id="intellect_angel" onClick={this.addAngelAttribute}/>
