@@ -90,6 +90,10 @@ a {
   display: inline-block;
 }
 
+.plus-or-minus::selection {
+  background: transparent; /* WebKit/Blink Browsers */
+}
+
 .talents a {
   padding: 2px 4px;
   border: 1px solid rgb(204, 204, 204);
@@ -97,11 +101,27 @@ a {
   display: inline-block;
 }
 
-::selection {
+.talents a::selection {
+  background: transparent; /* WebKit/Blink Browsers */
+}
+
+.angels a {
+  padding: 2px 4px;
+  border: 1px solid rgb(204, 204, 204);
+  cursor: pointer!important;
+  display: inline-block;
+}
+
+.angels a::selection {
   background: transparent; /* WebKit/Blink Browsers */
 }
 
 .active {
+  background-color: #0ec00e!important;
+  color: #fff;
+}
+
+.active-angel {
   background-color: #0ec00e!important;
   color: #fff;
 }
@@ -113,18 +133,16 @@ a {
   background-color: #f3f3f3;
 }
 
+.stat-container::selection {
+  background: transparent; /* WebKit/Blink Browsers */
+}
+
 .talent-attribute {
   background-color: #d7d73c!important;
-}
+} 
 
-.stat input{
-  cursor: default!important;
-  background-color: #f3f3f3;
-}
-
-.level input{
-  cursor: default!important;
-  background-color: #f3f3f3;
+.level input::selection {
+  background: transparent; /* WebKit/Blink Browsers */
 }
 
 /* mobile */
