@@ -133,7 +133,7 @@ class Calculator extends Component {
     // calculate hp/mana etc
     var xelima = document.getElementById("xelima");
     if (xelima.classList.contains("active")) {
-      var new_hp = Math.floor(((+(vitallity * 2) + +(level * 5 / 2) + +(strength * 2 / 3)) / 100) * 75);
+      var new_hp = Math.floor(((+(vitallity * 2) + +(level * 5 / 2) + +(strength * 2 / 3)) / 100) * 80);
     } else {
       var new_hp = +(vitallity * 2) + +(level * 5 / 2) + +(strength * 2 / 3);
     }
@@ -503,86 +503,74 @@ class Calculator extends Component {
 
   render() {
     return (
-      <div className="App-stats">
-        <div className="simulator-container">
-          <div className="absolute">
-            <div className="simulator-title">
-              The character simulator allows you to test different possible stats for your character.<br/>
-              Hold Shift to change by 10 points.<br/>
-              Or type in the attributes box.
-            </div>
-            <div className="level">
-              Level: <NumericInput size={3} readOnly min={1} max={140} value={1} id="level"/>
-            </div>
-            <div className="rebirth">
-              Rebirth level: <span id="rebirth">0</span>
-            </div>
-            <div className="remainingpoints">
-              Points left <span id="remainingpoints">10</span>
-            </div>
-            <div className="health">
-              Health points <span id="health">28</span>
-            </div>
-            <div className="mana">
-              Mana points <span id="mana">27</span>
-            </div>
-            <div className="stamina">
-              Stamina <span id="stamina">22</span>
-            </div>
-            <div className="load">
-              Max weight <span id="load">55</span>
-            </div>
-            <div className="strength">
-              STR <NumericInput size={3} min={10} max={200} value={10} id="strength" onInput={this.handleChange} onBlur={this.handleChange} onKeyDown={this.handleChange}/>
-            <a id="plus_strength" className="plus-or-minus" onClick={this.isKeyPressed}>+</a><a id="minus_strength" className="plus-or-minus" onClick={this.isKeyPressed}>-</a>
-            </div>
-            <div className="vitallity">
-              VIT <NumericInput size={3} min={10} max={200} value={10} id="vitallity" onInput={this.handleChange} onBlur={this.handleChange} onKeyDown={this.handleChange}/>
-              <a id="plus_vitallity" className="plus-or-minus" onClick={this.isKeyPressed}>+</a><a id="minus_vitallity" className="plus-or-minus" onClick={this.isKeyPressed}>-</a>
-            </div>
-            <div className="dexterity">
-              DEX <NumericInput size={3} min={10} max={200} value={10} id="dexterity" onInput={this.handleChange} onBlur={this.handleChange} onKeyDown={this.handleChange}/>
-              <a id="plus_dexterity" className="plus-or-minus" onClick={this.isKeyPressed}>+</a><a id="minus_dexterity" className="plus-or-minus" onClick={this.isKeyPressed}>-</a>
-            </div>
-            <div className="intellect">
-              INT <NumericInput size={3} min={10} max={200} value={10} id="intellect" onInput={this.handleChange} onBlur={this.handleChange} onKeyDown={this.handleChange}/>
-              <a id="plus_intellect" className="plus-or-minus" onClick={this.isKeyPressed}>+</a><a id="minus_intellect" className="plus-or-minus" onClick={this.isKeyPressed}>-</a>
-            </div>
-            <div className="magic">
-              MAG <NumericInput size={3} min={10} max={200} value={10} id="magic" onInput={this.handleChange} onBlur={this.handleChange} onKeyDown={this.handleChange}/>
-              <a id="plus_magic" className="plus-or-minus" onClick={this.isKeyPressed}>+</a><a id="minus_magic" className="plus-or-minus" onClick={this.isKeyPressed}>-</a>
-            </div>
-            <div className="luck">
-              LUK <NumericInput size={3} min={10} max={200} value={10} id="luck" onInput={this.handleChange} onBlur={this.handleChange} onKeyDown={this.handleChange}/>
-            <a id="plus_luck" className="plus-or-minus" onClick={this.isKeyPressed}>+</a><a id="minus_luck" className="plus-or-minus" onClick={this.isKeyPressed}>-</a>
-            </div>
-            <div className="talents">
-              Choose talents<br/>
-              <a id="shortsword" onClick={this.addOrRemoveActive}>Short Sword</a>
-              <a id="longsword" onClick={this.addOrRemoveActive}>Long Sword</a>
-              <a id="fencing" onClick={this.addOrRemoveActive}>Fencing</a>
-              <a id="axe" onClick={this.addOrRemoveActive}>Axe</a>
-              <a id="hammer" onClick={this.addOrRemoveActive}>Hammer</a>
-              <a id="archery" onClick={this.addOrRemoveActive}>Archery</a>
-              <a id="earth" onClick={this.addOrRemoveActive}>Earth</a>
-              <a id="lightning" onClick={this.addOrRemoveActive}>Lightning</a>
-              <a id="fire" onClick={this.addOrRemoveActive}>Fire</a>
-              <a id="ice" onClick={this.addOrRemoveActive}>Ice</a>
-              <a id="holy" onClick={this.addOrRemoveActive}>Holy</a>
-              <a id="poison" onClick={this.addOrRemoveActive}>Poison</a>
-              <a id="tank" onClick={this.addOrRemoveActive}>Tank</a>
-              <a id="xelima" onClick={this.addOrRemoveActive}>Xelima</a>
-              <a id="merien" onClick={this.addOrRemoveActive}>Merien</a>
-            </div>
-          </div>
-          <img src={'/character_simulator.png'} alt="charactersim" className="simulator-image"/>
-          <img src={'/board.png'} alt="board" className="angel-board"/>
-          <div className="angels">
-            <img src={'/strengthangel.png'} className="angel" alt="strengthangel" id="strength_angel" onClick={this.addAngelAttribute}/>
-            <img src={'/dexterityangel.png'} className="angel" alt="strengthangel" id="dexterity_angel" onClick={this.addAngelAttribute}/>
-            <img src={'/intellectangel.png'} className="angel" alt="strengthangel" id="intellect_angel" onClick={this.addAngelAttribute}/>
-            <img src={'/magicangel.png'} className="angel" alt="strengthangel" id="magic_angel" onClick={this.addAngelAttribute}/>
-          </div>
+      <div className="App-search">
+        <p className="is-centered">
+          The character simulator allows you to test different possible stats for your character.<br/>
+          Hold Shift to change by 10 points.<br/>
+          Or type in the attributes box.
+        </p>
+        <p className="level">
+          Level: <NumericInput size={3} readOnly min={1} max={140} value={1} id="level"/>
+        </p>
+        <p className="rebirth">
+          Rebirth level: <span className="stat-container" id="rebirth">0</span>
+        </p>
+        <p className="remainingpoints">
+          Points left <span className="stat-container" id="remainingpoints">10</span>
+        </p>
+        <p className="health">
+          Health points <span className="stat-container" id="health">28</span>
+        </p>
+        <p className="mana">
+          Mana points <span className="stat-container" id="mana">27</span>
+        </p>
+        <p className="stamina">
+          Stamina <span className="stat-container" id="stamina">22</span>
+        </p>
+        <p className="load">
+          Max weight <span className="stat-container" id="load">55</span>
+        </p>
+        <div className="strength stat">
+          STR <NumericInput readOnly size={3} min={10} max={200} value={10} id="strength" onInput={this.handleChange} onBlur={this.handleChange} onKeyDown={this.handleChange}/>
+        <a id="plus_strength" className="plus-or-minus" onClick={this.isKeyPressed}>+</a><a id="minus_strength" className="plus-or-minus" onClick={this.isKeyPressed}>-</a>
+        </div>
+        <div className="vitallity stat">
+          VIT <NumericInput readOnly size={3} min={10} max={200} value={10} id="vitallity" onInput={this.handleChange} onBlur={this.handleChange} onKeyDown={this.handleChange}/>
+          <a id="plus_vitallity" className="plus-or-minus" onClick={this.isKeyPressed}>+</a><a id="minus_vitallity" className="plus-or-minus" onClick={this.isKeyPressed}>-</a>
+        </div>
+        <div className="dexterity stat">
+          DEX <NumericInput readOnly size={3} min={10} max={200} value={10} id="dexterity" onInput={this.handleChange} onBlur={this.handleChange} onKeyDown={this.handleChange}/>
+          <a id="plus_dexterity" className="plus-or-minus" onClick={this.isKeyPressed}>+</a><a id="minus_dexterity" className="plus-or-minus" onClick={this.isKeyPressed}>-</a>
+        </div>
+        <div className="intellect stat">
+          INT <NumericInput readOnly size={3} min={10} max={200} value={10} id="intellect" onInput={this.handleChange} onBlur={this.handleChange} onKeyDown={this.handleChange}/>
+          <a id="plus_intellect" className="plus-or-minus" onClick={this.isKeyPressed}>+</a><a id="minus_intellect" className="plus-or-minus" onClick={this.isKeyPressed}>-</a>
+        </div>
+        <div className="magic stat">
+          MAG <NumericInput readOnly size={3} min={10} max={200} value={10} id="magic" onInput={this.handleChange} onBlur={this.handleChange} onKeyDown={this.handleChange}/>
+          <a id="plus_magic" className="plus-or-minus" onClick={this.isKeyPressed}>+</a><a id="minus_magic" className="plus-or-minus" onClick={this.isKeyPressed}>-</a>
+        </div>
+        <div className="luck stat">
+          LUK <NumericInput readOnly size={3} min={10} max={200} value={10} id="luck" onInput={this.handleChange} onBlur={this.handleChange} onKeyDown={this.handleChange}/>
+        <a id="plus_luck" className="plus-or-minus" onClick={this.isKeyPressed}>+</a><a id="minus_luck" className="plus-or-minus" onClick={this.isKeyPressed}>-</a>
+        </div>
+        <div className="talents">
+          <p className="is-centered">Choose talents</p>
+          <a id="shortsword" onClick={this.addOrRemoveActive}>Short Sword</a>
+          <a id="longsword" onClick={this.addOrRemoveActive}>Long Sword</a>
+          <a id="fencing" onClick={this.addOrRemoveActive}>Fencing</a>
+          <a id="axe" onClick={this.addOrRemoveActive}>Axe</a>
+          <a id="hammer" onClick={this.addOrRemoveActive}>Hammer</a>
+          <a id="archery" onClick={this.addOrRemoveActive}>Archery</a>
+          <a id="earth" onClick={this.addOrRemoveActive}>Earth</a>
+          <a id="lightning" onClick={this.addOrRemoveActive}>Lightning</a>
+          <a id="fire" onClick={this.addOrRemoveActive}>Fire</a>
+          <a id="ice" onClick={this.addOrRemoveActive}>Ice</a>
+          <a id="holy" onClick={this.addOrRemoveActive}>Holy</a>
+          <a id="poison" onClick={this.addOrRemoveActive}>Poison</a>
+          <a id="tank" onClick={this.addOrRemoveActive}>Tank</a>
+          <a id="xelima" onClick={this.addOrRemoveActive}>Xelima</a>
+          <a id="merien" onClick={this.addOrRemoveActive}>Merien</a>
         </div>
       </div>
     );

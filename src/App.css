@@ -38,15 +38,7 @@ nav {
     margin: 4rem auto;
     border: 1px solid #ddd;
     padding: 2rem;
-}
-
-.App-stats {
-  width: 100%;
-  max-width: 1000px;
-  min-height: 550px;
-  margin: 4rem auto;
-  border: 1px solid #ddd;
-  padding: 2rem;
+    font-size: 1rem;
 }
 
 input {
@@ -83,349 +75,56 @@ a {
 }
 
 .react-numeric-input, input {
-  border: none!important;
-  background-color: transparent!important;
+  padding: 2px;
 }
 
-.simulator-image {
-  display: inline-block;
-  width: 410px;
-  padding-right: 10px;
-  float: left;
-}
-.mod-image {
-  display: inline-block;
-  width: 410px;
-}
-
-.simulator-container {
-  width: 100%;
-  max-width: 720px;
-  margin: 0 auto;
-  display: block;
-  cursor: default!important;
-}
-
-.plus-or-minus::selection {
-  background: transparent; /* WebKit/Blink Browsers */
-}
-
-.plus-or-minus::-moz-selection {
-  background: transparent; /* Gecko Browsers */
-}
-
-.simulator-title {
-  line-height: 22px;
-  padding: 61px 25px 0 25px;
-  text-transform: none!important;
+.is-centered {
   text-align: center;
-}
-
-.absolute {
-  font-size: 18px;
-  width: 410px;
-  height: 0px;
-  position: absolute;
-}
-
-.active-angel {
-  background: #ff000063;
-}
-
-.level {
-  position: relative;
-  left: 42px;
-  top: 15px;
-}
-
-#level {
-  font-size: 16px!important;
-  position: relative;
-  left: 22px;
-  cursor: default!important;
-}
-
-.rebirth {
-  position: relative;
-  left: 164px;
-  top: -21px;
-}
-
-#rebirth {
-  font-size: 16px!important;
-  position: relative;
-  left: 3px;
-}
-
-.remainingpoints {
-  position: relative;
-  left: 42px;
-  top: -4px;
-}
-
-#remainingpoints {
-  font-size: 16px;
-  position: relative;
-  left: 41px;
-}
-
-.health {
-  position: relative;
-  left: 42px;
-  top: 5px;
-}
-
-#health {
-  font-size: 16px;
-  position: relative;
-  left: 20px;
-}
-
-.mana {
-  position: relative;
-  left: 42px;
-  top: 14px;
-}
-
-#mana {
-  font-size: 16px;
-  position: relative;
-  left: 27px;
-}
-
-.stamina {
-  position: relative;
-  left: 42px;
-  top: 24px;
-}
-
-#stamina {
-  font-size: 16px;
-  position: relative;
-  left: 61px;
-}
-
-.load {
-  position: relative;
-  left: 42px;
-  top: 33px;
-}
-
-#load {
-  font-size: 16px;
-  position: relative;
-  left: 32px;
-}
-
-.strength {
-  font-size: 16px;
-  position: relative;
-  left: 222px;
-  top: -123px;
-}
-
-#strength {
-  font-size: 16px!important;
-  position: relative;
-  left: 7px;
+  font-size: 20px;
 }
 
 .plus-or-minus {
-  width: 19px;
-  color: transparent;
+  border: 1px solid rgb(204, 204, 204);
+  padding: 0 10px;
+  cursor: pointer!important;
   display: inline-block;
-  cursor: pointer;
-  ::-moz-selection {
-    background: transparent; /* Gecko Browsers */
-  }
-}
-
-#plus_strength {
-  position: relative;
-  left: 3px;
-  top: -3px;
-}
-
-#minus_strength {
-  position: relative;
-  left: 4px;
-  top: -3px;
-}
-
-.vitallity {
-  font-size: 16px;
-  position: relative;
-  left: 222px;
-  top: -142px;
-}
-
-#vitallity {
-  font-size: 16px!important;
-  position: relative;
-  left: 15px;
-}
-
-#plus_vitallity {
-  position: relative;
-  left: 10px;
-  top: -4px;
-}
-
-#minus_vitallity {
-  position: relative;
-  left: 11px;
-  top: -4px;
-}
-
-.dexterity {
-  font-size: 16px;
-  position: relative;
-  left: 222px;
-  top: -162px;
-}
-
-#dexterity {
-  font-size: 16px!important;
-  position: relative;
-  left: 6px;
-}
-
-#plus_dexterity {
-  position: relative;
-  left: 2px;
-  top: -4px;
-}
-
-#minus_dexterity {
-  position: relative;
-  left: 3px;
-  top: -4px;
-}
-
-
-.intellect {
-  font-size: 16px;
-  position: relative;
-  left: 222px;
-  top: -182px;
-}
-
-#intellect {
-  font-size: 16px!important;
-  position: relative;
-  left: 14px;
-}
-
-#plus_intellect {
-  position: relative;
-  left: 10px;
-  top: -4px;
-}
-
-#minus_intellect {
-  position: relative;
-  left: 11px;
-  top: -4px;
-}
-
-.magic {
-  font-size: 16px;
-  position: relative;
-  left: 222px;
-  top: -202px;
-}
-
-#magic {
-  font-size: 16px!important;
-  position: relative;
-  left: 3px;
-}
-
-#plus_magic {
-  position: relative;
-  left: -1px;
-  top: -3px;
-}
-
-#minus_magic {
-  position: relative;
-  left: 0px;
-  top: -3px;
-}
-
-.luck {
-  font-size: 16px;
-  position: relative;
-  left: 222px;
-  top: -222px;
-}
-
-#luck {
-  font-size: 16px!important;
-  position: relative;
-  left: 9px;
-}
-
-#plus_luck {
-  position: relative;
-  left: 4px;
-  top: -3px;
-}
-
-#minus_luck {
-  position: relative;
-  left: 5px;
-  top: -3px;
-}
-
-.talents {
-  position: relative;
-  top: -215px;
-  padding: 0 25px 0 25px;
-  text-transform: none!important;
-  text-align: center;
 }
 
 .talents a {
-  cursor: pointer;
-  color: blue;
-  margin: 0 5px;
-  font-size: 14px;
+  padding: 2px 4px;
+  border: 1px solid rgb(204, 204, 204);
+  cursor: pointer!important;
+  display: inline-block;
 }
 
-.talents a::selection {
+::selection {
   background: transparent; /* WebKit/Blink Browsers */
 }
 
-.talents a::-moz-selection {
-  background: transparent; /* Gecko Browsers */
+.active {
+  background-color: #0ec00e!important;
+  color: #fff;
+}
+
+.stat-container {
+  cursor: default!important;
+  padding: 2px 10px;
+  border: 1px solid rgb(204, 204, 204);
+  background-color: #f3f3f3;
 }
 
 .talent-attribute {
-  color: #d7d73c!important;
+  background-color: #d7d73c!important;
 }
 
-.angel-attribute {
-  color: #d7d73c!important;
+.stat input{
+  cursor: default!important;
+  background-color: #f3f3f3;
 }
 
-.active {
-  color: #0ec00e!important;
-}
-
-.angel-board {
-  width: 300px;
-}
-
-.angels {
-  position: relative;
-  bottom: 85px;
-  left: 20px;
-}
-
-.angel {
-  padding: 4px;
-  width: 55px;
+.level input{
+  cursor: default!important;
+  background-color: #f3f3f3;
 }
 
 /* mobile */
