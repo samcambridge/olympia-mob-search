@@ -426,9 +426,6 @@ class Calculator extends Component {
   }
 
   handleChange(event) {
-    if (event.target.value === "") {
-      event.target.value = 10
-    }
     var level = document.getElementById("level");
     var strength = document.getElementById("strength");
     var magic = document.getElementById("magic");
@@ -531,27 +528,27 @@ class Calculator extends Component {
           Max weight <span className="stat-container" id="load">55</span>
         </p>
         <div className="strength stat">
-          STR <NumericInput readOnly size={3} min={10} max={200} value={10} id="strength" onInput={this.handleChange} onBlur={this.handleChange} onKeyDown={this.handleChange}/>
+          STR <NumericInput size={3} min={10} max={200} value={10} id="strength" onInput={this.handleChange} onBlur={this.handleChange} onKeyDown={this.handleChange}/>
         <a id="plus_strength" className="plus-or-minus" onClick={this.isKeyPressed}>+</a><a id="minus_strength" className="plus-or-minus" onClick={this.isKeyPressed}>-</a>
         </div>
         <div className="vitallity stat">
-          VIT <NumericInput readOnly size={3} min={10} max={200} value={10} id="vitallity" onInput={this.handleChange} onBlur={this.handleChange} onKeyDown={this.handleChange}/>
+          VIT <NumericInput size={3} min={10} max={200} value={10} id="vitallity" onInput={this.handleChange} onBlur={this.handleChange} onKeyDown={this.handleChange}/>
           <a id="plus_vitallity" className="plus-or-minus" onClick={this.isKeyPressed}>+</a><a id="minus_vitallity" className="plus-or-minus" onClick={this.isKeyPressed}>-</a>
         </div>
         <div className="dexterity stat">
-          DEX <NumericInput readOnly size={3} min={10} max={200} value={10} id="dexterity" onInput={this.handleChange} onBlur={this.handleChange} onKeyDown={this.handleChange}/>
+          DEX <NumericInput size={3} min={10} max={200} value={10} id="dexterity" onInput={this.handleChange} onBlur={this.handleChange} onKeyDown={this.handleChange}/>
           <a id="plus_dexterity" className="plus-or-minus" onClick={this.isKeyPressed}>+</a><a id="minus_dexterity" className="plus-or-minus" onClick={this.isKeyPressed}>-</a>
         </div>
         <div className="intellect stat">
-          INT <NumericInput readOnly size={3} min={10} max={200} value={10} id="intellect" onInput={this.handleChange} onBlur={this.handleChange} onKeyDown={this.handleChange}/>
+          INT <NumericInput size={3} min={10} max={200} value={10} id="intellect" onInput={this.handleChange} onBlur={this.handleChange} onKeyDown={this.handleChange}/>
           <a id="plus_intellect" className="plus-or-minus" onClick={this.isKeyPressed}>+</a><a id="minus_intellect" className="plus-or-minus" onClick={this.isKeyPressed}>-</a>
         </div>
         <div className="magic stat">
-          MAG <NumericInput readOnly size={3} min={10} max={200} value={10} id="magic" onInput={this.handleChange} onBlur={this.handleChange} onKeyDown={this.handleChange}/>
+          MAG <NumericInput size={3} min={10} max={200} value={10} id="magic" onInput={this.handleChange} onBlur={this.handleChange} onKeyDown={this.handleChange}/>
           <a id="plus_magic" className="plus-or-minus" onClick={this.isKeyPressed}>+</a><a id="minus_magic" className="plus-or-minus" onClick={this.isKeyPressed}>-</a>
         </div>
         <div className="luck stat">
-          LUK <NumericInput readOnly size={3} min={10} max={200} value={10} id="luck" onInput={this.handleChange} onBlur={this.handleChange} onKeyDown={this.handleChange}/>
+          LUK <NumericInput size={3} min={10} max={200} value={10} id="luck" onInput={this.handleChange} onBlur={this.handleChange} onKeyDown={this.handleChange}/>
         <a id="plus_luck" className="plus-or-minus" onClick={this.isKeyPressed}>+</a><a id="minus_luck" className="plus-or-minus" onClick={this.isKeyPressed}>-</a>
         </div>
         <div className="talents">
@@ -571,6 +568,13 @@ class Calculator extends Component {
           <a id="tank" onClick={this.addOrRemoveActive}>Tank</a>
           <a id="xelima" onClick={this.addOrRemoveActive}>Xelima</a>
           <a id="merien" onClick={this.addOrRemoveActive}>Merien</a>
+        </div>
+        <div className="angels">
+          <p className="is-centered">Choose Angel</p>
+          <a className="angel" alt="strengthangel" id="strength_angel" onClick={this.addAngelAttribute}>Strength+15</a>
+          <a className="angel" alt="dexangel" id="dexterity_angel" onClick={this.addAngelAttribute}>Dexterity+15</a>
+          <a className="angel" alt="intangel" id="intellect_angel" onClick={this.addAngelAttribute}>Intellect+15</a>
+          <a className="angel" alt="magangel" id="magic_angel" onClick={this.addAngelAttribute}>Magic+15</a>
         </div>
       </div>
     );
