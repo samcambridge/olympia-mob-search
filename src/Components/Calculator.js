@@ -575,7 +575,7 @@ class Calculator extends Component {
           <a className="angel" alt="dexangel" id="dexterity_angel" onClick={this.addAngelAttribute}>Dexterity+15</a>
           <a className="angel" alt="intangel" id="intellect_angel" onClick={this.addAngelAttribute}>Intellect+15</a>
           <a className="angel" alt="magangel" id="magic_angel" onClick={this.addAngelAttribute}>Magic+15</a>
-        </div>
+        </div> 
       </div>
     );
   }
