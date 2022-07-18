@@ -281,56 +281,74 @@ class Calculator extends Component {
   }
 
   addTankCalculation(attribute, level) {
-    if (level.value < 20) {
+    if (level.value < 14) {
       attribute.value = +attribute.value + 15
     }
-    if (level.value >= 20 && level.value < 40) {
+    if (level.value >= 14 && level.value < 28) {
       attribute.value = +attribute.value + 16
     }
-    if (level.value >= 40 && level.value < 60) {
+    if (level.value >= 28 && level.value < 42) {
       attribute.value = +attribute.value + 17
     }
-    if (level.value >= 60 && level.value < 80) {
+    if (level.value >= 42 && level.value < 56) {
       attribute.value = +attribute.value + 18
     }
-    if (level.value >= 80 && level.value < 100) {
+    if (level.value >= 56 && level.value < 70) {
       attribute.value = +attribute.value + 19
     }
-    if (level.value >= 100 && level.value < 120) {
+    if (level.value >= 70 && level.value < 84) {
       attribute.value = +attribute.value + 20
     }
-    if (level.value >= 120 && level.value < 140) {
+    if (level.value >= 84 && level.value < 98) {
       attribute.value = +attribute.value + 21
     }
-    if (level.value == 140) {
+    if (level.value >= 98 && level.value < 112) {
       attribute.value = +attribute.value + 22
+    }
+    if (level.value >= 112 && level.value < 126) {
+      attribute.value = +attribute.value + 23
+    }
+    if (level.value >= 126 && level.value < 140) {
+      attribute.value = +attribute.value + 24
+    }
+    if (level.value == 140) {
+      attribute.value = +attribute.value + 25
     }
   }
 
   removeTankCalculation(attribute, level) {
-    if (level.value < 20) {
+    if (level.value < 14) {
       attribute.value = +attribute.value - 15
     }
-    if (level.value >= 20 && level.value < 40) {
+    if (level.value >= 14 && level.value < 28) {
       attribute.value = +attribute.value - 16
     }
-    if (level.value >= 40 && level.value < 60) {
+    if (level.value >= 28 && level.value < 42) {
       attribute.value = +attribute.value - 17
     }
-    if (level.value >= 60 && level.value < 80) {
+    if (level.value >= 42 && level.value < 56) {
       attribute.value = +attribute.value - 18
     }
-    if (level.value >= 80 && level.value < 100) {
+    if (level.value >= 56 && level.value < 70) {
       attribute.value = +attribute.value - 19
     }
-    if (level.value >= 100 && level.value < 120) {
+    if (level.value >= 70 && level.value < 84) {
       attribute.value = +attribute.value - 20
     }
-    if (level.value >= 120 && level.value < 140) {
+    if (level.value >= 84 && level.value < 98) {
       attribute.value = +attribute.value - 21
     }
-    if (level.value == 140) {
+    if (level.value >= 98 && level.value < 112) {
       attribute.value = +attribute.value - 22
+    }
+    if (level.value >= 112 && level.value < 126) {
+      attribute.value = +attribute.value - 23
+    }
+    if (level.value >= 126 && level.value < 140) {
+      attribute.value = +attribute.value - 24
+    }
+    if (level.value == 140) {
+      attribute.value = +attribute.value - 25
     }
   }
 
@@ -575,7 +593,7 @@ class Calculator extends Component {
           <a className="angel" alt="dexangel" id="dexterity_angel" onClick={this.addAngelAttribute}>Dexterity+15</a>
           <a className="angel" alt="intangel" id="intellect_angel" onClick={this.addAngelAttribute}>Intellect+15</a>
           <a className="angel" alt="magangel" id="magic_angel" onClick={this.addAngelAttribute}>Magic+15</a>
-        </div> 
+        </div>
       </div>
     );
   }
