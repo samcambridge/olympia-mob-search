@@ -397,10 +397,10 @@ class Calculator extends Component {
   addOrRemoveActive(event){
     var level = document.getElementById("level");
     var active_talents = document.getElementsByClassName("active")
-    if (level.value < 10) {
-      return alert("You need to be atleast level 10 before choosing your first talent")
+    if (level.value < 5) {
+      return alert("You need to be atleast level 5 before choosing your first talent")
     } else {
-      if (level.value >= 10 && level.value < 40) {
+      if (level.value >= 5 && level.value < 40) {
         if (event.target.classList.contains("active")) {
           event.target.classList.remove("active");
         } else {
